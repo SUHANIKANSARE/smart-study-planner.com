@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <body>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">📚</div>
+            <h2>Smart Study<br>Planner</h2>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="#dashboardSection" class="menu-item active">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#taskSection" class="menu-item">
+                <span>☑️</span>
+                <span>Tasks</span>
+            </a>
+
+            <a href="#subjectSection" class="menu-item">
+                <span>📖</span>
+                <span>Subjects</span>
+            </a>
+
+            <a href="#practiceSection" class="menu-item">
+                <span>📄</span>
+                <span>Practice Papers</span>
+            </a>
+
+            <a href="#progressSection" class="menu-item">
+                <span>📈</span>
+                <span>Progress</span>
+            </a>
+
+            <a href="#performanceReportSection" class="menu-item">
+                <span>📊</span>
+                <span>Performance Report</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="logout-menu">
+                <span>↪️</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+
+            <div class="search-box">
+                🔍
+                <input type="text" placeholder="Search anything...">
+            </div>
+
+            <div class="user-area">
+                <span class="notification">🔔</span>
+                <div class="user-avatar">S</div>
+                <span class="user-name">Suhani</span>
+                <span>⌄</span>
+            </div>
+
+        </div>
+
+
+        <!-- Welcome Banner -->
+        <section id="dashboardSection" class="welcome-banner app-page" data-page="dashboard">
+
+            <div class="welcome-text">
+
+                <p class="hello-text">👋 Hello, Suhani!</p>
+
+                <h1>
+                    Welcome back to
+                    <span>Smart Study Planner</span>
+                </h1>
+
+                <p>
+                    Plan your study. Track your progress. Achieve your goals.
+                </p>
+
+            </div>
+
+            <div class="welcome-message">
+
+                <h2>Small steps<br>
+                    every day lead to<br>
+                    big results! 💜
+                </h2>
+
+            </div>
+
+            <div class="welcome-books">
+                📚
+            </div>
+
+        </section>
+    
+
+    <!-- Subject Cards -->
+    <section id="subjectSection" class="app-page" data-page="subjects">
+
+        <h2>📖 My Subjects</h2>
+
+        <div class="subject-card" onclick="openSubject('Computer Science')">
+             <h3>💻 Computer Science</h3>
+             <p>Study your computer science topics.</p>
+        </div>
+
+        <div class="subject-card" onclick="openSubject('Artificial Intelligence')">
+             <h3>🤖 Artificial Intelligence</h3>
+             <p>Learn AI concepts and algorithms.</p>
+        </div>
+
+        <div class="subject-card" onclick="openSubject('Cyber Security')">
+             <h3>🔐 Cyber Security</h3>
+             <p>Practice security and networking topics.</p>
+        </div>
+
+        <button id="addSubjectBtn">➕ Add Subject</button>
+
+    </section>
+
+    <!-- Subject Details -->
+    <section id="subjectDetails" class="app-page" data-page="subjects" style="display:none;">
+
+         <h2 id="selectedSubjectTitle">📚 Subject</h2>
+
+         <div id="subjectContent"></div>
+
+    </section>
+    
+    <!-- Today's Tasks -->
+    <section id="taskSection" class="app-page" data-page="tasks">
+
+        <h2>✅ Today's Tasks</h2>
+        <input type="text" id="searchTask" placeholder="Search your task...">
+
+<ul id="taskList">
+    <li data-subject="Computer Science">
+        <input type="checkbox">
+        Complete Computer Science notes
+    </li>
+
+    <li data-subject="Artificial Intelligence">
+        <input type="checkbox">
+        Practice AI questions
+    </li>
+
+    <li data-subject="Cyber Security">
+        <input type="checkbox">
+        Revise Cyber Security
+    </li>
+</ul>
+
+        <button id="addTaskBtn">➕ Add Task</button>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="app-page" data-page="progress">
+
+        <h2>📊 Study Progress</h2>
+
+        <p>🎯 Daily Goal</p>
+        <input type="number" id="dailyGoal" min="1" placeholder="Enter number of tasks">
+        <p id="progressText">Today's Progress: 0%</p>
+
+        <progress id="progressBar" value="0" max="100"></progress>
+    </section>
+
+    <!-- Study Statistics -->
+    <section class="app-page" data-page="progress">
+
+         <h2>📈 Study Statistics</h2>
+
+         <p id="completedStats">Completed Tasks: 0</p>
+         <p id="pendingStats">Pending Tasks: 0</p>
+    </section>
+
+    <!-- Subject-wise Progress -->
+    <section class="app-page" data-page="progress">
+
+         <h2>📚 Subject-wise Progress</h2>
+
+         <p>💻 Computer Science</p>
+         <progress id="csProgress" value="0" max="100"></progress>
+
+         <p>🤖 Artificial Intelligence</p>
+         <progress id="aiProgress" value="0" max="100"></progress>
+
+         <p>🔐 Cyber Security</p>
+         <progress id="cyberProgress" value="0" max="100"></progress>
+    </section>
+
+    <!-- Practice Papers -->
+    <section id="practiceSection" class="app-page" data-page="practice">
+
+        <h2>📄 Practice Papers</h2>
+
+        <p>Enter the subject for which you want important practice questions:</p>
+
+        <input
+            type="text"
+            id="practiceSubject"
+            placeholder="Enter subject name"
+        >
+
+        <br><br>
+
+        <button id="generatePaperBtn">
+            📄 Generate Practice Paper
+        </button>
+
+        <p id="paperMessage"></p>
+
+        <div id="practicePaper"></div>
+
+        <button id="downloadPaperBtn" style="display:none;">
+            ⬇️ Download PDF
+        </button>
+    </section>
+
+    <!-- Personal Performance Report -->
+    <section id="performanceReportSection" class="app-page" data-page="performance">
+        
+        <h2>📊 Personal Performance Report</h2>
+
+        <!-- Daily Performance -->
+        <div id="dailyPerformance">
+            <h3>📅 Daily Performance</h3>
+
+            <p id="reportTotalTasks">Total Tasks: 0</p>
+            <p id="reportCompletedTasks">Completed Tasks: 0</p>
+            <p id="reportPendingTasks">Pending Tasks: 0</p>
+            <p id="reportProgress">Overall Performance: 0%</p>
+        </div>
+
+        <!-- Subject-wise Performance -->
+        <div id="subjectPerformance">
+
+            <h3>📈 Subject-wise Performance</h3>
+
+        <div id="subjectGraph">
+            <p>No subject performance available yet.</p>
+        </div>
+
+    </div>
+
+    <!-- Guidance -->
+    <div id="performanceGuidance">
+ 
+        <h3>💡 Guidance</h3>
+
+        <p id="guidanceText">
+            Generate your performance report to get study guidance.
+        </p>
+
+    </div>
+
+    <button id="generateReportBtn">
+        📊 Generate Personal Performance Report
+    </button>
+
+    <button id="downloadReportBtn" style="display:none;">
+        ⬇️ Download Performance Report PDF
+    </button>
+
+    </section>
+
+    <script type="module">
+    import {
+        getAuth,
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB2FlkeqOusow8qNq9-zeR7erf3kpI1gAU",
+        authDomain: "smart-study-planner-5f723.firebaseapp.com",
+        projectId: "smart-study-planner-5f723",
+        storageBucket: "smart-study-planner-5f723.firebasestorage.app",
+        messagingSenderId: "1092762116428",
+        appId: "1:1092762116428:web:69ac50ece80d7da382efe9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+            window.location.href = "login.html";
+        }
+
+    });
+</script>
+
+<script>
+document.querySelectorAll(".menu-item").forEach(function(item) {
+
+    item.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        const targetPage = this.querySelector("span:last-child").textContent
+            .toLowerCase()
+            .replace(" ", "");
+
+        document.querySelectorAll(".app-page").forEach(function(page) {
+            page.style.display = "none";
+        });
+
+        if (targetPage === "dashboard") {
+            document.querySelector('[data-page="dashboard"]').style.display = "block";
+        }
+
+        if (targetPage === "tasks") {
+            document.querySelectorAll('[data-page="tasks"]').forEach(function(page) {
+                page.style.display = "block";
+            });
+        }
+
+        if (targetPage === "subjects") {
+            document.querySelector('[data-page="subjects"]').style.display = "block";
+        }
+
+        if (targetPage === "practicepapers") {
+            document.querySelector('[data-page="practice"]').style.display = "block";
+        }
+
+        if (targetPage === "progress") {
+            document.querySelectorAll('[data-page="progress"]').forEach(function(page) {
+                page.style.display = "block";
+            });
+        }
+
+        if (targetPage === "performancereport") {
+            document.querySelector('[data-page="performance"]').style.display = "block";
+        }
+
+        document.querySelectorAll(".menu-item").forEach(function(menu) {
+            menu.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+});
+</script>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
